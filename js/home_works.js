@@ -1,3 +1,4 @@
+//gmail
 const gmailInput = document.querySelector('#gmail_input')
 const gmailButton = document.querySelector('#gmail_button')
 const gmailResult = document.querySelector('#gmail_result')
@@ -15,25 +16,9 @@ gmailButton.onclick = () => {
     }
 }
 
-
+//БЛОК С АНИМАЦИЕЙ
 const parentBlock = document.querySelector('.parent_block')
 const childBlock = document.querySelector('.child_block')
-// let num = 0
-// childBlock.style.left = num
-// const move = () => {
-//     num++
-//     childBlock.style.left = `${num}px`
-//     if (num < 448) {
-//         num++
-//         childBlock.style.left = `${num}px`
-//         animation()
-
-//     }
-// }
-// function animation() {
-//     setTimeout(move, 10)
-// }
-// animation()
 
 let positionX = 0
 let positionY = 0
@@ -59,7 +44,7 @@ const move = () => {
 }
 move()
 
-
+//ТАЙМЕР
 const minuts = document.querySelector('#minutesS')
 const start = document.querySelector('#start')
 const stop = document.querySelector('#stop')
