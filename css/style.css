@@ -53,6 +53,10 @@
 
 /* MAIN BLOCK */
 
+/* .inner_main {
+    background-image: url(../img/1.jpg);
+} */
+
 .main_block {
     padding: 100px 0;
     background: black;
@@ -218,7 +222,8 @@
     color: white;
 }
 
-.modal_input, .btn_min {
+.modal_input,
+.btn_min {
     width: 100% !important;
     margin-top: 10px;
 }
@@ -253,15 +258,19 @@
     0% {
         transform: rotate(0deg);
     }
+
     25% {
         transform: rotate(22deg);
     }
+
     50% {
         transform: rotate(0deg);
     }
+
     75% {
         transform: rotate(-22deg);
     }
+
     100% {
         filter: hue-rotate(360deg);
     }
@@ -304,25 +313,26 @@
         width: 150px;
         height: 60px;
     }
+
     25% {
         left: 55%;
         width: 140px;
         height: 65px;
     }
+
     50% {
         left: 50%;
         width: 150px;
         height: 60px;
     }
+
     75% {
         left: 45%;
         width: 140px;
         height: 65px;
     }
-    100% {
 
-
-    }
+    100% {}
 }
 
 
@@ -345,21 +355,27 @@
     0% {
         transform: rotate(0deg);
     }
+
     25% {
         transform: rotate(-22deg);
     }
+
     30% {
         transform: rotate(-23deg);
     }
+
     50% {
         transform: rotate(0deg);
     }
+
     75% {
         transform: rotate(22deg);
     }
+
     80% {
         transform: rotate(23deg);
     }
+
     100% {
         transform: rotate(0deg);
     }
@@ -408,6 +424,7 @@
         top: calc(50% + 130px);
 
     }
+
     50% {
         left: 50%;
         width: 260px;
@@ -415,6 +432,7 @@
         top: calc(50% + 150px);
 
     }
+
     75% {
         left: 45%;
         width: 265px;
@@ -422,6 +440,6 @@
         top: calc(50% + 130px);
 
     }
-    100% {
-    }
+
+    100% {}
 }

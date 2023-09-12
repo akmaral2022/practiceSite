@@ -60,11 +60,13 @@
     border-radius: 50%;
     transition: all 0.1s ease;
     animation: rotate 0.1s linear infinite;
+
 }
 
 @keyframes rotate {
     from {
         transform: rotate(-360deg);
+
     }
 }
 
