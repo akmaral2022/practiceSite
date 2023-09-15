@@ -6,7 +6,7 @@ const modalCloseButton = document.querySelector('.modal_close')
 const openModal = () => {
     modal.style.display = 'block'
     document.body.style.overflow = 'hidden'
-    modalWasShown = true
+
 
 }
 
@@ -31,6 +31,7 @@ window.addEventListener('scroll', () => {
     // Если пользователь прокрутил до определенной точки (здесь, 100% страницы)
     if (scrollHeight >= pageHeight * 1 && !modalWasShown) {   // ЗАПОМНИТЬ ЧТО НЕ РАВНО В УСЛОВИЯХ ОБОЗНАЧАЕТСЯ ТАК
         openModal()
+        modalWasShown = true
 
     }
 
