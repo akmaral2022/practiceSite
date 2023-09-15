@@ -2,6 +2,7 @@
 const modal = document.querySelector('.modal')
 const modalTrigger = document.querySelector('#btn-get')
 const modalCloseButton = document.querySelector('.modal_close')
+
 const openModal = () => {
     modal.style.display = 'block'
     document.body.style.overflow = 'hidden'
@@ -21,7 +22,7 @@ modalCloseButton.onclick = () => { closeModal() }
 modal.onclick = () => {
     if (event.target === modal) closeModal()
 }
-
+//ОКНО ПО ПРОКРУТКЕ В КОНЕЦ СТРАНИЦЫ
 let modalWasShown = false
 window.addEventListener('scroll', () => {
     const scrollHeight = window.innerHeight + window.scrollY;
@@ -41,6 +42,7 @@ window.addEventListener('scroll', () => {
 Свойство documentElement возвращает documentElement документа в виде объекта Element.
 Для HTML-документов возвращаемым объектом является элемент <html>.*/
 
+//ЧЕРЕЗ 10 СЕКУНД ПО ОТКЫТИЮ СТРАНИЦЫ
 let showModal = false
 //const time = 10
 const timeOut = () => {

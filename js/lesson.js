@@ -21,6 +21,7 @@ phoneButton.onclick = () => {
 const tabContentBlocks = document.querySelectorAll('.tab_content_block')
 const tabsParentBlock = document.querySelector('.tab_content_items')
 const tabsBlocks = document.querySelectorAll('.tab_content_item')
+let interval
 
 
 const hideTabContent = () => {
@@ -58,7 +59,7 @@ const animation = () => {
     tabsBlocks[currentIndex].classList.add('tab_content_item_active')
     tabContentBlocks[currentIndex].style.display = "block"
 }
-setInterval(animation, 3000)
+interval = setInterval(animation, 3000)
 
 /*currentIndex увеличивается на 1, а затем берется остаток от деления этого значения на texts.length.
 Эта операция циклически переходит от одного элемента к другому в массиве tabsBlocks. Когда currentIndex достигает максимального значения (равного tabsBlocks.length - 1), 

@@ -60,12 +60,14 @@ const startTimer = () => {
 }
 
 start.onclick = () => {
+    clearInterval(interval)
     interval = setInterval(startTimer, 1000)
-    stop.onclick = () => {
-        clearInterval(interval)
-    }
+}
+stop.onclick = () => {
+    clearInterval(interval)
 }
 reset.onclick = () => {
+    clearInterval(interval)
     minutes = 0
     minuts.innerHTML = minutes
 
