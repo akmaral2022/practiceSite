@@ -43,13 +43,28 @@ window.addEventListener('scroll', () => {
 Для HTML-документов возвращаемым объектом является элемент <html>.*/
 
 //ЧЕРЕЗ 10 СЕКУНД ПО ОТКЫТИЮ СТРАНИЦЫ
-let showModal = false
-//const time = 10
-const timeOut = () => {
-    if (!showModal) {
+/* 1 вАРИАНТ - открывает через 10 секунд при переоде на любую страницу, т.е. через 10 сек он откроет модальное окно 1 и не окткроет,
+ до того момента как пользователь переключится на другую старницу */
+// let showModal = false
+// const timeOut = () => {
+//     if (!showModal) {
+//         setTimeout(openModal, 10000)
+//         showModal = true
+//     }
+// }
+// timeOut()
+
+
+/* 2 ВАРИАНТ - откроет при загрузке сайта 1 раз и больше нигде при загрузке другой страницы сайта отркываться не будет*/
+// Функция для проверки, было ли модальное окно уже открыто в текущей сессии
+function checkSessionCookie() {
+    const hasModalShown = sessionStorage.getItem("modalShown");
+
+    if (!hasModalShown) {
         setTimeout(openModal, 10000)
-        showModal = true
+        sessionStorage.setItem("modalShown", "true");
     }
 }
-timeOut()
 
+// Проверяем, было ли модальное окно уже открыто в текущей сессии
+checkSessionCookie();
