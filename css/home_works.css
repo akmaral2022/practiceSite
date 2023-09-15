@@ -9,7 +9,7 @@
     margin-top: 50px;
     display: flex;
     justify-content: space-evenly;
-    border: 1px solid var(--orange);
+    border: 1px solid #049763;
     height: 300px;
     border-radius: 20px;
     align-items: center;
@@ -36,7 +36,7 @@
 .parent_block {
     height: 500px;
     width: 500px;
-    border: 1px solid var(--orange);
+    border: 1px solid #049763;
     position: relative;
     margin: 0 auto;
     border-radius: 20px;
@@ -46,7 +46,7 @@
 .inner_parent_block {
     height: 400px;
     width: 400px;
-    border: 1px solid var(--orange);
+    border: 1px solid #049763;
     border-radius: 18px;
 }
 
@@ -56,7 +56,7 @@
     top: 0;
     width: 50px;
     height: 50px;
-    border: 5px dashed red;
+    border: 5px dashed rgb(0, 238, 255);
     border-radius: 50%;
     transition: all 0.1s ease;
     animation: rotate 0.1s linear infinite;
@@ -187,7 +187,7 @@
     font-size: 80px;
     height: 100px;
     width: 100%;
-    border-bottom: 1px solid var(--orange);
+    border-bottom: 1px solid #049763;
     margin-top: 40px;
 }
 
