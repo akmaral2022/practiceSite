@@ -57,8 +57,8 @@ window.addEventListener('scroll', () => {
 
 /* 2 ВАРИАНТ - откроет при загрузке сайта 1 раз и больше нигде при загрузке другой страницы сайта отркываться не будет*/
 // Функция для проверки, было ли модальное окно уже открыто в текущей сессии
-function checkSessionCookie() {
-    const hasModalShown = sessionStorage.getItem("modalShown");
+function showModal() {
+    const hasModalShown = sessionStorage.getItem("modalShown"); //
 
     if (!hasModalShown) {
         setTimeout(openModal, 10000)
@@ -67,4 +67,4 @@ function checkSessionCookie() {
 }
 
 // Проверяем, было ли модальное окно уже открыто в текущей сессии
-checkSessionCookie();
+showModal();
