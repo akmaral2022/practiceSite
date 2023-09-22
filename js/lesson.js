@@ -67,3 +67,68 @@ interval = setInterval(animation, 3000)
 В данном случае, оператор % используется для создания кругового (циклического) эффекта при переключении текстов, 
 чтобы после последнего элемента вернуться к первому и так далее. */
 
+
+//CONVERTER
+const som = document.querySelector('#som')
+const usd = document.querySelector('#usd')
+const eur = document.querySelector('#eur')
+
+// som.addEventListener('input', () => {    //любое изменение в input
+//     // console.log(event.target.value);
+//     const request = new XMLHttpRequest()
+//     request.open("GET", "../data/converter.json")
+//     request.setRequestHeader("Content-type", "application/json")
+//     request.send()
+//     request.addEventListener('load', () => {
+//         const response = JSON.parse(request.response)
+//         usd.value = (som.value / response.usd).toFixed(2)  // toFixed - работает долько на ЧИСЛА с плавающей точкой
+//     })
+// })
+// usd.addEventListener('input', () => {    //любое изменение в input
+//     // console.log(event.target.value);
+//     const request = new XMLHttpRequest()
+//     request.open("GET", "../data/converter.json")
+//     request.setRequestHeader("Content-type", "application/json")
+//     request.send()
+//     request.addEventListener('load', () => {
+//         const response = JSON.parse(request.response)
+//         som.value = (usd.value / response.usd).toFixed(2)  // toFixed - работает долько на ЧИСЛА с плавающей точкой
+//     })
+
+// })
+
+//DRY - DON'T REPEAT YOURSELF
+//KISS - KEEP IT SIMPLE, STUPID
+//KISS - KEEP IT SHORT AND SIMPLE
+
+const converter = (element, target1, target2, isCurrency) => {
+    element.oninput = () => {
+        const request = new XMLHttpRequest()
+        request.open("GET", "../data/converter.json")
+        request.setRequestHeader("Content-type", "application/json")
+        request.send()
+
+        request.onload = () => {
+            const response = JSON.parse(request.response)
+            if (isCurrency === 'som') {
+                target1.value = (element.value / response.usdToSom).toFixed(2)
+                // target2.value = ((element.value / response.usdToSom) / (response.usdToEur)).toFixed(2)  // как вариант без ипользование тренъего значения в json
+                target2.value = (element.value / response.eurToSom).toFixed(2)
+            } else if (isCurrency === 'doll') {
+                target1.value = (element.value * response.usdToSom).toFixed(2)
+                target2.value = (element.value / response.usdToEur).toFixed(2)
+
+            } else if (isCurrency === 'euro') {
+                target1.value = (element.value * response.eurToSom).toFixed(2)
+                // target1.value = ((element.value * (response.usdToSom * response.usdToEur))).toFixed(2)// тоже самое, но значения немного сбивается
+                target2.value = (element.value * response.usdToEur).toFixed(2)
+            }
+            element.value === '' ? target1.value = '' : null
+            element.value === '' ? target2.value = '' : null
+            // element.value === '' && (target1.value = '')  // - более сокращенная версия
+        }
+    }
+}
+converter(som, usd, eur, 'som')
+converter(usd, som, eur, 'doll')
+converter(eur, som, usd, 'euro')

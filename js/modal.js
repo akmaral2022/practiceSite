@@ -69,3 +69,28 @@ function showModal() {
 
 // Проверяем, было ли модальное окно уже открыто в текущей сессии
 showModal();
+
+
+//POST DATA
+
+// const form = document.querySelector('form')
+
+// const postData = (formElemnt) => {
+//     formElemnt.addEventListener('submit', (event) => {
+//         event.preventDefault()
+
+//         const request = new XMLHttpRequest()
+//         request.open("POST", "../server.php")
+//         request.setRequestHeader("Content-type", "application/json")
+//         const formData = new FormData(formElemnt)
+//         const obj = {}
+//         formData.forEach((item, index) => {
+//             obj[index] = item
+//         })
+//         const json = JSON.stringify(obj)
+//         console.log(json);
+
+//         request.send(json)
+//     })
+// }
+
