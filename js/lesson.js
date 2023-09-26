@@ -132,3 +132,61 @@ const converter = (element, target1, target2, isCurrency) => {
 converter(som, usd, eur, 'som')
 converter(usd, som, eur, 'doll')
 converter(eur, som, usd, 'euro')
+
+//CARD SWITCHER
+
+const card = document.querySelector('.card')
+const btnNext = document.querySelector('#btn-next')
+const btnPrev = document.querySelector('#btn-prev')
+
+let count = 1
+
+
+// btnNext.onclick = () => {
+//     if (count < 200) {
+//         count++
+//         cardValue()
+//     } else {
+//         count = 1
+//         cardValue()
+//     }
+// }
+// btnPrev.onclick = () => {
+//     if (count > 1) {
+//         count--
+//         cardValue()
+//     } else {
+//         count = 200
+//         cardValue()
+//     }
+// }
+btnNext.onclick = () => {
+    count = (count < 200) ? count + 1 : count = 1
+    cardValue()
+}
+btnPrev.onclick = () => {
+    count = (count > 1) ? count - 1 : count = 200
+    cardValue()
+}
+
+function cardValue() {
+    fetch(`https://jsonplaceholder.typicode.com/todos/${count}`)
+        .then(response => response.json())
+        .then(data =>
+            card.innerHTML = `
+        <p>${data.title}</p>
+        <p style="color: ${data.completed ? 'green' : 'red'}">${data.completed}</p>
+        <span>${data.id}</span>
+        `
+
+        )
+
+}
+cardValue()
+
+
+//2) Так же сделать отдельный fetch запрос на эту ссылку: 'https://jsonplaceholder.typicode.com/posts' и отобразить данные просто в консоли
+fetch(`https://jsonplaceholder.typicode.com/posts `)
+    .then((result) => result.json())
+    .then((data) => { console.log(data) }
+    )

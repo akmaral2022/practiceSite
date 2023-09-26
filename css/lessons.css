@@ -96,7 +96,9 @@
 .card {
     width: 500px;
     height: 150px;
-    border: 1px solid var(--orange);
+
+    border: 1px solid #05be7d;
+    box-shadow: 0px 0px 5px #05be7d;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -106,7 +108,7 @@
 }
 
 .card p {
-    color: var(--orange);
+    color: #fff;
     font-size: 20px;
 }
 
