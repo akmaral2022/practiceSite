@@ -101,31 +101,60 @@ const eur = document.querySelector('#eur')
 //KISS - KEEP IT SIMPLE, STUPID
 //KISS - KEEP IT SHORT AND SIMPLE
 
-const converter = (element, target1, target2, isCurrency) => {
-    element.oninput = () => {
-        const request = new XMLHttpRequest()
-        request.open("GET", "../data/converter.json")
-        request.setRequestHeader("Content-type", "application/json")
-        request.send()
+// const converter = (element, target1, target2, isCurrency) => {
+//     element.oninput = () => {
+//         const request = new XMLHttpRequest()
+//         request.open("GET", "../data/converter.json")
+//         request.setRequestHeader("Content-type", "application/json")
+//         request.send()
 
-        request.onload = () => {
-            const response = JSON.parse(request.response)
+//         request.onload = () => {
+//             const response = JSON.parse(request.response)
+//             if (isCurrency === 'som') {
+//                 target1.value = (element.value / response.usdToSom).toFixed(2)
+//                 // target2.value = ((element.value / response.usdToSom) / (response.usdToEur)).toFixed(2)  // как вариант без ипользование тренъего значения в json
+//                 target2.value = (element.value / response.eurToSom).toFixed(2)
+//             } else if (isCurrency === 'doll') {
+//                 target1.value = (element.value * response.usdToSom).toFixed(2)
+//                 target2.value = (element.value / response.usdToEur).toFixed(2)
+
+//             } else if (isCurrency === 'euro') {
+//                 target1.value = (element.value * response.eurToSom).toFixed(2)
+//                 // target1.value = ((element.value * (response.usdToSom * response.usdToEur))).toFixed(2)// тоже самое, но значения немного сбивается
+//                 target2.value = (element.value * response.usdToEur).toFixed(2)
+//             }
+//             element.value === '' ? target1.value = '' : null
+//             element.value === '' ? target2.value = '' : null
+//             // element.value === '' && (target1.value = '')  // - более сокращенная версия
+//         }
+//     }
+// }
+
+//async/await & catch
+const converter = (element, target1, target2, isCurrency) => {
+    element.oninput = async () => {
+        try {
+            const response = await fetch('../data/converter.json')
+            const data = await response.json()
+            console.log(data);
+
             if (isCurrency === 'som') {
-                target1.value = (element.value / response.usdToSom).toFixed(2)
+                target1.value = (element.value / data.usdToSom).toFixed(2)
                 // target2.value = ((element.value / response.usdToSom) / (response.usdToEur)).toFixed(2)  // как вариант без ипользование тренъего значения в json
-                target2.value = (element.value / response.eurToSom).toFixed(2)
+                target2.value = (element.value / data.eurToSom).toFixed(2)
             } else if (isCurrency === 'doll') {
-                target1.value = (element.value * response.usdToSom).toFixed(2)
-                target2.value = (element.value / response.usdToEur).toFixed(2)
+                target1.value = (element.value * data.usdToSom).toFixed(2)
+                target2.value = (element.value / data.usdToEur).toFixed(2)
 
             } else if (isCurrency === 'euro') {
-                target1.value = (element.value * response.eurToSom).toFixed(2)
+                target1.value = (element.value * data.eurToSom).toFixed(2)
                 // target1.value = ((element.value * (response.usdToSom * response.usdToEur))).toFixed(2)// тоже самое, но значения немного сбивается
-                target2.value = (element.value * response.usdToEur).toFixed(2)
+                target2.value = (element.value * data.usdToEur).toFixed(2)
             }
             element.value === '' ? target1.value = '' : null
             element.value === '' ? target2.value = '' : null
-            // element.value === '' && (target1.value = '')  // - более сокращенная версия
+        } catch {
+            console.error('Ошибка в коде преобразования валюты');
         }
     }
 }
@@ -162,31 +191,75 @@ let count = 1
 // }
 btnNext.onclick = () => {
     count = (count < 200) ? count + 1 : count = 1
-    cardValue()
+    cardValue01()
 }
 btnPrev.onclick = () => {
     count = (count > 1) ? count - 1 : count = 200
-    cardValue()
+    cardValue01()
 }
 
-function cardValue() {
-    fetch(`https://jsonplaceholder.typicode.com/todos/${count}`)
-        .then(response => response.json())
-        .then(data =>
-            card.innerHTML = `
-        <p>${data.title}</p>
-        <p style="color: ${data.completed ? 'green' : 'red'}">${data.completed}</p>
-        <span>${data.id}</span>
-        `
-
-        )
-
+// function cardValue() {
+//     fetch(`https://jsonplaceholder.typicode.com/todos/${count}`)
+//         .then(response => response.json())
+//         .then(data =>
+//             card.innerHTML = `
+//         <p>${data.title}</p>
+//         <p style="color: ${data.completed ? 'green' : 'red'}">${data.completed}</p>
+//         <span>${data.id}</span>
+//         `
+//         )
+// }
+// cardValue()
+// async/await & catch
+const cardValue01 = async () => {
+    try {
+        const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${count}`)
+        const data = await response.json()
+        card.innerHTML = `
+    <p>${data.title}</p>
+    <p style="color: ${data.completed ? 'green' : 'red'}">${data.completed}</p>
+    <span>${data.id}</span>
+    `
+    } catch {
+        console.error('Ошибка в коде слайдера');
+    }
 }
-cardValue()
-
+cardValue01()
 
 //2) Так же сделать отдельный fetch запрос на эту ссылку: 'https://jsonplaceholder.typicode.com/posts' и отобразить данные просто в консоли
-fetch(`https://jsonplaceholder.typicode.com/posts `)
-    .then((result) => result.json())
-    .then((data) => { console.log(data) }
-    )
+// fetch(`https://jsonplaceholder.typicode.com/posts `)
+//     .then((result) => result.json())
+//     .then((data) => { console.log(data) }
+//     )
+
+//WEATHER
+const cityName = document.querySelector('.cityName')
+const btnSrarch = document.querySelector('#btn-search')
+const city = document.querySelector('.city')
+const temp = document.querySelector('.temp')
+
+//API HELPER
+const DEFAULT_URL = 'http://api.openweathermap.org/data/2.5/weather'
+const API_KEY = 'e417df62e04d3b1b111abeab19cea714'
+
+//optional chaning - ?
+
+cityName.oninput = async (event) => {
+    // fetch(`${DEFAULT_URL}?q=${event.target.value}&appid=${API_KEY}`)
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         console.log(data);
+    //async/await & catch
+    try {
+        const response = await fetch(`${DEFAULT_URL}?q=${event.target.value}&appid=${API_KEY}`)
+        const data = await response.json()
+
+        city.innerHTML = data.name ? data.name : 'Город не найден или не указан'
+        temp.innerHTML = data?.main?.temp ? Math.round(data.main.temp - 273) + '&deg;C' : '...'
+    } catch {
+        console.error('Ошибка в коде для получения погоды');
+    }
+
+    // )}
+
+}
