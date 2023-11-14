@@ -200,6 +200,10 @@
     justify-content: space-between;
 }
 
+.interval {
+    width: 80px;
+}
+
 .stopwatch {
     padding: 100px 0;
     background: black;

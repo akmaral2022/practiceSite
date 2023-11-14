@@ -45,33 +45,51 @@ const move = () => {
 move()
 
 //ТАЙМЕР
-const minuts = document.querySelector('#minutesS')
-const seconds = document.querySelector('#secondsS')
-const mlSeconds = document.querySelector('#ml-secondsS')
+const minutsBlock = document.querySelector('#minutesS')
+const secondsBlock = document.querySelector('#secondsS')
+const mlSecondsBlock = document.querySelector('#ml-secondsS')
 const start = document.querySelector('#start')
 const stop = document.querySelector('#stop')
 const reset = document.querySelector('#reset')
 let interval
-let minutes = 0
+let minuts = 0
+let secunds = 0
+let mlSeconds = 0
 
 const startTimer = () => {
-    if (minutes < 59) {
-        minutes++
-        seconds.innerHTML = minutes
+
+    mlSeconds++
+    mlSecondsBlock.innerHTML = mlSeconds
+    if (mlSeconds >= 99) {
+        secunds++
+        secondsBlock.innerHTML = secunds
+        mlSeconds = 0
+        if (secunds >= 59 && minuts < 59) {
+            minuts++
+            minutsBlock.innerHTML = minuts
+            secunds = 0
+        }
     }
+
 }
 
 start.onclick = () => {
     clearInterval(interval)
-    interval = setInterval(startTimer, 1000)
+    interval = setInterval(startTimer, 10)
 }
 stop.onclick = () => {
     clearInterval(interval)
 }
 reset.onclick = () => {
     clearInterval(interval)
-    minutes = 0
-    seconds.innerHTML = minutes
+    minuts = 0
+    secunds = 0
+    mlSeconds = 0
+    minutsBlock.innerHTML = '00'
+    secondsBlock.innerHTML = '00'
+    mlSecondsBlock.innerHTML = '00'
+
+
 
 }
 
