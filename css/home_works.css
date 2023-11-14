@@ -10,6 +10,9 @@
     display: flex;
     justify-content: space-evenly;
     border: 1px solid #049763;
+    background-image: url(../img/mail.jpg);
+    background-size: cover;
+    background-attachment: fixed;
     height: 300px;
     border-radius: 20px;
     align-items: center;

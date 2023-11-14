@@ -23,8 +23,12 @@ window.onload = async () => {
             personCard.setAttribute('class', 'person__card')
             personCard.innerHTML = `
         <img src="../img/2.jpg">
+        <div class="txt">
     <p>Название: ${card.title}</p>
+    </div>
+    <div class="txt">
     <p>Статья: ${card.body}</p>
+    </div>
     `
             cardBody.append(personCard)
         })

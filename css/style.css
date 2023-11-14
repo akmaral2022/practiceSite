@@ -47,8 +47,11 @@
     text-transform: uppercase;
 }
 
+
+
 .menu_link a:hover {
     text-decoration: underline;
+
 }
 
 /* MAIN BLOCK */

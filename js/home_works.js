@@ -46,6 +46,8 @@ move()
 
 //ТАЙМЕР
 const minuts = document.querySelector('#minutesS')
+const seconds = document.querySelector('#secondsS')
+const mlSeconds = document.querySelector('#ml-secondsS')
 const start = document.querySelector('#start')
 const stop = document.querySelector('#stop')
 const reset = document.querySelector('#reset')
@@ -55,7 +57,7 @@ let minutes = 0
 const startTimer = () => {
     if (minutes < 59) {
         minutes++
-        minuts.innerHTML = minutes
+        seconds.innerHTML = minutes
     }
 }
 
@@ -69,7 +71,7 @@ stop.onclick = () => {
 reset.onclick = () => {
     clearInterval(interval)
     minutes = 0
-    minuts.innerHTML = minutes
+    seconds.innerHTML = minutes
 
 }
 
